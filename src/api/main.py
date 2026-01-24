@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from inference import predict_price, batch_predict
 from schemas import HousePredictionRequest, PredictionResponse
-from prometheus_fastapi_instrumentor import Instrumentor
+from prometheus_fastapi_instrumentator import Instrumentator
 
 # Initialize FastAPI app with metadata
 app = FastAPI(
@@ -33,7 +33,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-Instrumentor().instrument(app).expose(app)
+Instrumentator().instrument(app).expose(app)
 
 # Health check endpoint
 @app.get("/health", response_model=dict)
